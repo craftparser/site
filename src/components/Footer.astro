@@ -37,6 +37,9 @@ const today = new Date();
             <div class="site-footer__copy">
                 &copy; {today.getFullYear()} {SITE_TITLE}
             </div>
+            <div class="site-footer__dev">
+                Разработано в <a href="https://scrpt.ru">scrpt.ru</a>
+            </div>
         </div>
     </div>
 </footer>
@@ -129,6 +132,18 @@ const today = new Date();
 .site-footer__copy {
     font-size: 0.8125rem;
     color: var(--ink-3);
+}
+.site-footer__dev {
+    font-size: 0.8125rem;
+    color: var(--ink-3);
+}
+.site-footer__dev a {
+    color: var(--ink-2);
+    text-decoration: none;
+    transition: color 0.18s ease;
+}
+.site-footer__dev a:hover {
+    color: var(--ink);
 }
 
 @media (max-width: 700px) {
