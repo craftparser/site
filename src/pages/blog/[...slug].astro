@@ -61,7 +61,6 @@ const pubDate = post.data.pubDate.toLocaleDateString('ru-RU', {
                     <header class="post__header">
                         <div class="post__meta">
                             <a class="post__back" href="/blog/">← Все статьи</a>
-                            <time class="post__date" datetime={post.data.pubDate.toISOString()}>{pubDate}</time>
                         </div>
                         <h1 class="post__title">{post.data.title}</h1>
                         {post.data.description && (
