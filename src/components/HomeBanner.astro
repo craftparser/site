@@ -240,6 +240,22 @@ import { TELEGRAM_BOT, TELEGRAM_CHANNEL } from '../consts';
     .hero__img { max-width: 260px; }
 }
 
+@media (max-width: 480px) {
+    .hero__stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        padding: 0.875rem 0.75rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .hero-stat__sep { display: none; }
+    .hero-stat { padding: 0 0.75rem; }
+    .hero-stat:not(:first-child) { border-left: 1px solid var(--border); }
+    .hero-stat__lbl { white-space: normal; }
+    .hero-stat__val { font-size: 1.125rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .hero__img-wrap { animation: none; }
 }
