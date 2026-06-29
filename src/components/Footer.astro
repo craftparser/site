@@ -1,9 +1,6 @@
 ---
 import { SITE_TITLE, TELEGRAM_BOT, TELEGRAM_CHANNEL, LINK_DOC, LINK_PARTNER } from '../consts';
-
 import Metrika from './Metrika.astro';
-
-const today = new Date();
 ---
 
 <footer class="site-footer">
@@ -11,7 +8,6 @@ const today = new Date();
         <div class="site-footer__top">
             <div class="site-footer__brand">
                 <a class="footer-logo" href="/">
-                    <span class="footer-logo__mark">CT</span>
                     {SITE_TITLE}
                 </a>
                 <p class="site-footer__disclaimer">
@@ -34,12 +30,8 @@ const today = new Date();
             </nav>
         </div>
         <div class="site-footer__bottom">
-            <div class="site-footer__copy">
-                &copy; {today.getFullYear()} {SITE_TITLE}
-            </div>
-            <div class="site-footer__dev">
-                Разработано в <a href="https://scrpt.ru">scrpt.ru</a>
-            </div>
+            <span class="site-footer__meta">&copy; {new Date().getFullYear()} {SITE_TITLE}</span>
+            <span class="site-footer__meta">Разработано в <a href="https://scrpt.ru">scrpt.ru</a></span>
         </div>
     </div>
 </footer>
@@ -77,25 +69,12 @@ const today = new Date();
     text-decoration: none;
     margin-bottom: 1rem;
 }
-.footer-logo__mark {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.75rem;
-    height: 1.75rem;
-    background: var(--accent);
-    color: oklch(0.12 0.022 248);
-    border-radius: 0.35rem;
-    font-size: 0.65rem;
-    font-weight: 800;
-}
 .site-footer__disclaimer {
     font-size: 0.75rem;
     line-height: 1.65;
     color: var(--ink-3);
     margin: 0;
 }
-
 .site-footer__nav {
     display: flex;
     gap: 4rem;
@@ -113,37 +92,31 @@ const today = new Date();
     color: var(--ink-3);
     margin-bottom: 0.25rem;
 }
-.footer-nav-group a {
-    font-size: 0.875rem;
-    color: var(--ink-2);
+.footer-nav-group a,
+.site-footer__meta a {
     text-decoration: none;
     transition: color 0.18s ease;
 }
-.footer-nav-group a:hover {
+.footer-nav-group a {
+    font-size: 0.875rem;
+    color: var(--ink-2);
+}
+.footer-nav-group a:hover,
+.site-footer__meta a:hover {
     color: var(--ink);
 }
-
 .site-footer__bottom {
     padding: 1.25rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.site-footer__copy {
+.site-footer__meta {
     font-size: 0.8125rem;
     color: var(--ink-3);
 }
-.site-footer__dev {
-    font-size: 0.8125rem;
-    color: var(--ink-3);
-}
-.site-footer__dev a {
+.site-footer__meta a {
     color: var(--ink-2);
-    text-decoration: none;
-    transition: color 0.18s ease;
-}
-.site-footer__dev a:hover {
-    color: var(--ink);
 }
 
 @media (max-width: 700px) {
