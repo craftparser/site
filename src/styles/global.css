@@ -1,10 +1,53 @@
 @import "tailwindcss";
-
 @plugin '@tailwindcss/typography';
 
-body { font-family: "Rubik"; }
+:root {
+  --bg:           oklch(0.13 0.022 248);
+  --surface:      oklch(0.17 0.018 248);
+  --surface-2:    oklch(0.21 0.015 248);
+  --border:       oklch(0.28 0.012 248);
+  --accent:       oklch(0.75 0.195 145);
+  --accent-light: oklch(0.82 0.17  145);
+  --accent-dim:   oklch(0.60 0.17  145);
+  --accent-glow:  oklch(0.75 0.195 145 / 0.14);
+  --ink:          oklch(0.96 0.004 248);
+  --ink-2:        oklch(0.68 0.012 248);
+  --ink-3:        oklch(0.50 0.010 248);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Rubik", system-ui, sans-serif;
+  background-color: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
+
+::selection { background: var(--accent-glow); color: var(--accent); }
+
+.prose {
+  --tw-prose-body:     var(--ink-2);
+  --tw-prose-headings: var(--ink);
+  --tw-prose-bold:     var(--ink);
+  --tw-prose-bullets:  var(--accent);
+  --tw-prose-links:    var(--accent);
+}
 
 .prose img {
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

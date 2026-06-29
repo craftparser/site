@@ -4,23 +4,139 @@ import { Image } from 'astro:assets';
 const { posts, level, title } = Astro.props;
 ---
 
-<div class="container mx-auto p-10 text-center">
-    <div class="text-2xl font-bold pb-10">
-        { level === 1 ? <h1>{title}</h1> : <h2>{title}</h2> }
+<section class="blog-section">
+    <div class="blog-section__inner">
+        <div class="blog-section__head">
+            { level === 1 ? <h1 class="blog-section__title">{title}</h1> : <h2 class="blog-section__title">{title}</h2> }
+        </div>
+        <ul class="blog-grid">
+            { posts.map((post) => (
+            <li class="post-card">
+                <a href={`/blog/${post.id}/`} class="post-card__link">
+                    {post.data.heroImage && (
+                        <div class="post-card__img-wrap">
+                            <Image
+                                class="post-card__img"
+                                loading="lazy"
+                                width={800}
+                                height={420}
+                                src={post.data.heroImage}
+                                alt={post.data.title}
+                            />
+                        </div>
+                    )}
+                    <div class="post-card__body">
+                        <div class="post-card__title">
+                            { level === 1 ? <h2>{post.data.title}</h2> : <h3>{post.data.title}</h3> }
+                        </div>
+                        {post.data.description && (
+                            <p class="post-card__desc">{post.data.description}</p>
+                        )}
+                        <span class="post-card__cta">Читать статью →</span>
+                    </div>
+                </a>
+            </li>
+            )) }
+        </ul>
     </div>
-    <ul class="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
-        { posts.map((post) => (
-        <li class="hover:scale-105 transition-all duration-300">
-            <a href={`/blog/${post.id}/`}>
-                {post.data.heroImage && (
-                    <Image class="rounded-t-2xl" loading="lazy" width={800} height={400} src={post.data.heroImage} alt={post.data.title} />
-                )}
-                <div style="background-color:rgba(0,0,0,0.8);" class="p-5 rounded-b-2xl">
-                    <div class="text-xl font-bold">{ level === 1 ? <h2>{post.data.title}</h2> : <h3>{post.data.title}</h3> }</div>
-                    <div class="text-gray-400 pt-5">{post.data.description}</div>
-                </div>
-            </a>
-        </li>
-        )) }
-    </ul>
-</div>
+</section>
+
+<style>
+.blog-section {
+    padding: 4rem 0;
+}
+.blog-section__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+.blog-section__head {
+    margin-bottom: 2.5rem;
+}
+.blog-section__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin: 0;
+}
+
+.blog-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+.post-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1.125rem;
+    overflow: hidden;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.post-card:hover {
+    transform: translateY(-5px);
+    border-color: oklch(0.38 0.015 248);
+    box-shadow: 0 12px 40px oklch(0 0 0 / 0.35);
+}
+.post-card__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+.post-card__img-wrap {
+    overflow: hidden;
+    aspect-ratio: 16 / 8;
+}
+.post-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+.post-card:hover .post-card__img {
+    transform: scale(1.04);
+}
+.post-card__body {
+    padding: 1.25rem 1.375rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    flex: 1;
+}
+.post-card__title {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+}
+.post-card__title h2,
+.post-card__title h3 {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+.post-card__desc {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.post-card__cta {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--accent);
+    display: block;
+}
+</style>

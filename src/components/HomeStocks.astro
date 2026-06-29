@@ -1,16 +1,79 @@
 ---
 ---
 
-<div class="container mx-auto p-10">
-    <div class="text-2xl font-bold text-center">Поддерживаемые биржи</div>
-    <div class="text-center text-gray-500 pt-10">Возможность управления всеми своими биржевыми аккаунтами с одной платформы</div>
-    <div class="flex gap-10 py-5 justify-center flex-wrap">
-        <img src="/imgs/home/stocks/okx.webp"   alt="okx"   class="w-32 h-20 object-cover" />
-        <img src="/imgs/home/stocks/bingx.webp" alt="bingx" class="w-32 h-20 object-cover" />
-        <img src="/imgs/home/stocks/bybit.webp" alt="bybit" class="w-32 h-20 object-cover" />
+<section class="exchanges">
+    <div class="exchanges__inner">
+        <p class="exchanges__eyebrow">Интегрировано с биржами</p>
+        <div class="exchanges__logos">
+            <a class="exchange-logo" href="https://www.okx.com" target="_blank" rel="noopener noreferrer" title="OKX">
+                <img src="/imgs/home/stocks/okx.webp" alt="OKX" loading="lazy" />
+            </a>
+            <a class="exchange-logo" href="https://bingx.com" target="_blank" rel="noopener noreferrer" title="BingX">
+                <img src="/imgs/home/stocks/bingx.webp" alt="BingX" loading="lazy" />
+            </a>
+            <a class="exchange-logo" href="https://www.bybit.com" target="_blank" rel="noopener noreferrer" title="ByBit">
+                <img src="/imgs/home/stocks/bybit.webp" alt="ByBit" loading="lazy" />
+            </a>
+        </div>
+        <p class="exchanges__note">
+            Управляй всеми аккаунтами с одной платформы. Список партнёров постоянно расширяется.
+        </p>
     </div>
-    <div class="text-center text-gray-500 xl:w-2/3 mx-auto">
-        Мы постоянно расширяем партнерскую сеть, чтобы у наших пользователей было больше индивидуальных и удобных возможностей.
-        Ваша биржа - это место, где находятся ваши средства.
-    </div>
-</div>
+</section>
+
+<style>
+.exchanges {
+    border-top: 1px solid oklch(0.28 0.012 248 / 0.5);
+    border-bottom: 1px solid oklch(0.28 0.012 248 / 0.5);
+    background: oklch(0.17 0.018 248 / 0.6);
+    padding: 2.5rem 0;
+}
+.exchanges__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+.exchanges__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+}
+.exchanges__logos {
+    display: flex;
+    align-items: center;
+    gap: 3.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.exchange-logo {
+    opacity: 0.55;
+    transition: opacity 0.2s ease, filter 0.2s ease;
+    filter: grayscale(0.4);
+    display: block;
+}
+.exchange-logo:hover {
+    opacity: 1;
+    filter: grayscale(0);
+}
+.exchange-logo img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+.exchanges__note {
+    font-size: 0.8125rem;
+    color: var(--ink-3);
+    text-align: center;
+    max-width: 55ch;
+    margin: 0;
+    line-height: 1.6;
+}
+</style>

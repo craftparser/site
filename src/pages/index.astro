@@ -42,8 +42,6 @@ const json_ld = [{
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 ).slice(0, 6);
-
-const style_mark = { style: 'font-weight: 600;', class: 'text-green-500' };
 ---
 
 <!doctype html>
@@ -52,44 +50,205 @@ const style_mark = { style: 'font-weight: 600;', class: 'text-green-500' };
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
         <script type="application/ld+json" set:html={JSON.stringify(json_ld)} />
 	</head>
-	<body class="bg-gray-900 text-gray-100">
+	<body>
 		<Header />
         <HomeBanner />
         <HomeStocks />
-        <main>
 
-            <div class="container mx-auto p-10">
-                <div class="prose max-w-none text-gray-100 marker:text-green-500 text-justify">
-                    <h2 style="font-weight: 800" class="text-center text-gray-100">
-                        <span class="text-green-500">Craft Trade</span> – платформа для создания торговых стратегий
+        <main>
+            <section class="features">
+                <div class="features__inner">
+                    <h2 class="features__title">
+                        Почему выбирают <span class="features__accent">Craft Trade</span>
                     </h2>
-                    <p>Наши преимущества:</p>
-                    <ul>
-                        <li>Простота настройки и запуска торговли (<span {...style_mark}>MiniApp Telegram</span>)</li>
-                        <li>Прозрачные условия</li>
-                        <li>Самые низкие комиссии среди конкурентов, <span {...style_mark}>всего 6% от прибыли</span>, годовая подписка <span {...style_mark}>всего $60</span></li>
-                    </ul>
-                    <p>Торговый робот <span {...style_mark}>Craft Trade</span> был спроектирован и создан как не коммерческий продукт <span {...style_mark}>для собственного использования</span> в качестве инструмента позволяющего автоматизировать спотовую торговлю основной криптовалютой (Bitcoin, Etherium, XRP, LITE COIN, DOGE) на самых популярных биржах.</p>
-                    <p>В апреле 2025 года завершился этап тестирования, и мы приступили к полноценной работе с собственным продуктом.</p>
-                    <p>За 6 месяцев мы добились <span {...style_mark}>серьёзного прогресса</span> по части улучшения функционала приложения и повышения стабильности работы.</p>
-                    <p>В настоящее время мы уверенно смотрим в будущее и с гордость сообщаем, что Craft trade это:</p>
-                    <ul>
-                        <li><span {...style_mark}>Интеграция</span> с крупнейшими биржами (BingX, ByBit, OKX)</li>
-                        <li><span {...style_mark}>Стабильность</span> работы приложения (uptime 99%)</li>
-                        <li><span {...style_mark}>Максимальное количество</span> поддерживаемых монет</li>
-                        <li><span {...style_mark}>Возможность копировать</span> торговые стратегии других пользователетй Craft Trade</li>
-                    </ul>
-                    <!-- <p {...style_mark}>"Автоматизируй свой успех"</p> -->
+                    <p class="features__sub">
+                        Инструмент для собственного использования, ставший продуктом.
+                        Тестировали на себе — теперь делимся.
+                    </p>
+                    <div class="features__grid">
+
+                        <div class="feat-card">
+                            <div class="feat-card__icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.247l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.94z"/>
+                                </svg>
+                            </div>
+                            <h3 class="feat-card__title">Запуск в Telegram</h3>
+                            <p class="feat-card__desc">
+                                Настройка и запуск торгового бота прямо в MiniApp.
+                                Никаких установок и сложных инструкций — готов за 5 минут.
+                            </p>
+                        </div>
+
+                        <div class="feat-card">
+                            <div class="feat-card__icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                                </svg>
+                            </div>
+                            <h3 class="feat-card__title">Стабильность 99%</h3>
+                            <p class="feat-card__desc">
+                                Бот работает 24/7 без перерывов и выходных.
+                                Пока вы занимаетесь своими делами — он торгует.
+                            </p>
+                        </div>
+
+                        <div class="feat-card">
+                            <div class="feat-card__icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                                </svg>
+                            </div>
+                            <h3 class="feat-card__title">Три топовые биржи</h3>
+                            <p class="feat-card__desc">
+                                Интеграция с BingX, ByBit и OKX.
+                                Подключи все аккаунты к одной платформе — управляй централизованно.
+                            </p>
+                        </div>
+
+                        <div class="feat-card">
+                            <div class="feat-card__icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                </svg>
+                            </div>
+                            <h3 class="feat-card__title">Честные тарифы</h3>
+                            <p class="feat-card__desc">
+                                Всего 6% с прибыли или &dollar;60 в год. Никаких скрытых платежей
+                                и абонентской платы в убыточные месяцы.
+                            </p>
+                        </div>
+
+                        <div class="feat-card">
+                            <div class="feat-card__icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                </svg>
+                            </div>
+                            <h3 class="feat-card__title">Копирование стратегий</h3>
+                            <p class="feat-card__desc">
+                                Копируй проверенные стратегии успешных трейдеров
+                                сообщества Craft Trade одним нажатием.
+                            </p>
+                        </div>
+
+                        <div class="feat-card">
+                            <div class="feat-card__icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/>
+                                </svg>
+                            </div>
+                            <h3 class="feat-card__title">Максимум монет</h3>
+                            <p class="feat-card__desc">
+                                Bitcoin, Ethereum, XRP, Litecoin, DOGE и другие
+                                популярные криптовалюты в одном месте.
+                            </p>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
+            </section>
 
             <ListPosts posts={posts} level={2} title="Последние статьи" />
 
-            <div class="p-5 flex justify-center">
-                <a class="px-10 py-5 bg-green-500 text-green-950 rounded-4xl text-center text-xl font-bold" href={LINK_DOC}>Все статьи</a>
+            <div class="all-posts-wrap">
+                <a class="all-posts-btn" href={LINK_DOC}>Все статьи →</a>
             </div>
         </main>
+
         <Home3o />
 		<Footer />
 	</body>
 </html>
+
+<style>
+.features {
+    padding: 5rem 0;
+}
+.features__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+.features__title {
+    font-size: clamp(1.75rem, 3.5vw, 2.375rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    text-align: center;
+    margin: 0 0 1rem;
+    text-wrap: balance;
+}
+.features__accent { color: var(--accent); }
+.features__sub {
+    font-size: 1rem;
+    color: var(--ink-2);
+    text-align: center;
+    max-width: 50ch;
+    margin: 0 auto 3.5rem;
+    line-height: 1.6;
+}
+
+.features__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+}
+
+.feat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1.125rem;
+    padding: 1.75rem;
+    transition: border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+}
+.feat-card:hover {
+    border-color: oklch(0.40 0.015 248);
+    box-shadow: 0 8px 32px oklch(0 0 0 / 0.28);
+    transform: translateY(-3px);
+}
+.feat-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    background: var(--accent-glow);
+    border: 1px solid oklch(0.75 0.195 145 / 0.2);
+    border-radius: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+}
+.feat-card__title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.625rem;
+}
+.feat-card__desc {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--ink-2);
+    margin: 0;
+}
+
+.all-posts-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 0 2rem 4rem;
+}
+.all-posts-btn {
+    padding: 0.875rem 2.25rem;
+    border: 1px solid var(--border);
+    color: var(--ink-2);
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.all-posts-btn:hover {
+    border-color: var(--ink-3);
+    color: var(--ink);
+    transform: translateY(-1px);
+}
+</style>

@@ -6,30 +6,137 @@ import Metrika from './Metrika.astro';
 const today = new Date();
 ---
 
-<div class="text-gray-100" style="background-color:rgba(0,0,0,0.8);font-weight:800;">
-    <footer class="container mx-auto p-10 text-center">
-        <div class="flex gap-4 lg:gap-0 items-center flex-col lg:flex-row justify-between">
-            <div>&copy; {today.getFullYear()} {SITE_TITLE}</div>
-            <div class="flex gap-4 sm:gap-8 items-center text-sm">
-                <a class="hover:text-gray-300" href={TELEGRAM_CHANNEL}>Группа в Telegram</a>
-                <a class="hover:text-gray-300" href={LINK_DOC}>Статьи</a>
-                <a class="hover:text-gray-300" href={TELEGRAM_BOT}>Начать торговлю</a>
+<footer class="site-footer">
+    <div class="site-footer__inner">
+        <div class="site-footer__top">
+            <div class="site-footer__brand">
+                <a class="footer-logo" href="/">
+                    <span class="footer-logo__mark">CT</span>
+                    {SITE_TITLE}
+                </a>
+                <p class="site-footer__disclaimer">
+                    Команда Craft Trade является разработчиком программного обеспечения
+                    и не предоставляет услуги трейдинга, обмена, переводов или кошельков.
+                    Все упомянутые услуги осуществляются сторонними поставщиками.
+                </p>
+            </div>
+            <nav class="site-footer__nav">
+                <div class="footer-nav-group">
+                    <div class="footer-nav-group__label">Ресурсы</div>
+                    <a href={LINK_DOC}>Статьи</a>
+                    <a href={LINK_PARTNER}>Партнёрская программа</a>
+                </div>
+                <div class="footer-nav-group">
+                    <div class="footer-nav-group__label">Сообщество</div>
+                    <a href={TELEGRAM_CHANNEL}>Telegram канал</a>
+                    <a href={TELEGRAM_BOT}>Начать торговлю</a>
+                </div>
+            </nav>
+        </div>
+        <div class="site-footer__bottom">
+            <div class="site-footer__copy">
+                &copy; {today.getFullYear()} {SITE_TITLE}
             </div>
         </div>
-
-        <div class="p-2"></div>
-
-        <div class="flex items-center justify-center lg:justify-end text-sm">
-            <a class="hover:text-gray-300" href={LINK_PARTNER}>Партнерская программа</a>
-        </div>
-
-        <div class="p-2"></div>
-
-        <div class="max-w-2xl mx-auto font-normal text-xs text-gray-400">
-            Команда Craft Trade является разработчиком программного обеспечения и не предоставляет услуги трейдинга,
-            обмена, переводов или кошельков. Все упомянутые услуги осуществляются сторонними поставщиками.
-        </div>
-    </footer>
-</div>
+    </div>
+</footer>
 
 <Metrika />
+
+<style>
+.site-footer {
+    border-top: 1px solid var(--border);
+    background: oklch(0.15 0.020 248 / 0.7);
+    margin-top: 2rem;
+}
+.site-footer__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+.site-footer__top {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    padding: 3rem 0 2.5rem;
+    border-bottom: 1px solid oklch(0.28 0.012 248 / 0.5);
+}
+.site-footer__brand {
+    max-width: 380px;
+}
+.footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--ink);
+    text-decoration: none;
+    margin-bottom: 1rem;
+}
+.footer-logo__mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    background: var(--accent);
+    color: oklch(0.12 0.022 248);
+    border-radius: 0.35rem;
+    font-size: 0.65rem;
+    font-weight: 800;
+}
+.site-footer__disclaimer {
+    font-size: 0.75rem;
+    line-height: 1.65;
+    color: var(--ink-3);
+    margin: 0;
+}
+
+.site-footer__nav {
+    display: flex;
+    gap: 4rem;
+}
+.footer-nav-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.footer-nav-group__label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    margin-bottom: 0.25rem;
+}
+.footer-nav-group a {
+    font-size: 0.875rem;
+    color: var(--ink-2);
+    text-decoration: none;
+    transition: color 0.18s ease;
+}
+.footer-nav-group a:hover {
+    color: var(--ink);
+}
+
+.site-footer__bottom {
+    padding: 1.25rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.site-footer__copy {
+    font-size: 0.8125rem;
+    color: var(--ink-3);
+}
+
+@media (max-width: 700px) {
+    .site-footer__top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .site-footer__nav { gap: 2rem; }
+    .site-footer__brand { max-width: none; }
+}
+</style>
